@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <p><%= flash[:notice] %></p>
+    <% end %>
+    <h1>Books</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Opinion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.body %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h2>New Books</h2>
+    <% if @book.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <ul>
+          <%= @book.errors.count %>error found
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <%= form_with model: @book, url:'/books', local:true do |f| %>
+    <div>Title</div>
+    <%= f.text_field :title %>
+    <div>Body</div>
+    <%= f.text_area :body %>
+    <%= f.submit 'Create Books' %>
+    <% end %>
+  </body>
+</html>
