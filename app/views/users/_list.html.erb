@@ -1,0 +1,19 @@
+      <div class="profile-container">
+        <h3>User info</h3>
+      　<h3 class="profile-name">name <%= user.name %></h3>
+        <h3 class="profile-introduction">introduction <%=user.introduction %></h3>
+        <% if user.id == current_user.id %>
+          <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
+    　   <% end %>
+      </div>
+      
+      <div>
+        <h2>New book</h2>
+        <%= form_with model: book, local:true do |f| %>
+        <div>Title</div>
+        <%= f.text_field :title %>
+        <div>Opinion</div>
+        <%= f.text_area :body %>
+        <%= f.submit 'Create Book' %>
+        <% end %>
+      </div>
