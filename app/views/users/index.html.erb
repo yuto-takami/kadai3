@@ -4,17 +4,29 @@
   </head>
 
   <body>
+    <div class="col-lg-4">
+      <div class="profile-container">
+        <h3>User info</h3>
 
-    <table>
-      <h2>Users</h2>
-      <thead>
-        <tr>
-          <td>image</td>
-          <td>name</td>
-        </tr>
-      </thead>
+        <h3 class="profile-name">name <%= @user.name %></h3>
+    　   <h3 class="profile-introduction">introduction <%=@user.introduction %></h3>
+    　　  <% if @user.id == current_user.id %>
+          <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+        <% end %>
+      </div>
+    </dv>
 
-      <tbody>
+    <div class="col-lg-8">
+      <table class="table table-striped">
+        <h2>Users</h2>
+        <thead>
+          <tr>
+            <td>image</td>
+            <td>name</td>
+          </tr>
+        </thead>
+
+        <tbody>
           <% @users.each do |user| %>
           <tr>
             <td><%= user.profile_image_id %></td>
@@ -22,8 +34,8 @@
             <td><%= link_to "Show", user_path(current_user.id) %></td>
           </tr>
           <% end %>
-      </tbody>
-    </table>
-
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
