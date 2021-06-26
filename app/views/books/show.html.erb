@@ -9,16 +9,24 @@
     <% end %>
     <div class="container">
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-3">
           <%= render 'users/list', user: @user, book: @book %>
         </div>
 
 
-        <div class="col-lg-8">
-          <h2>Book detil</h2>
+        <div class="col-md-8 offset-md-1">
+          <h2>Book detail</h2>
           <table class="table table-striped">
             <tbody>
               <tr>
+                <td class="card-body">
+                  <%= link_to user_path(@user.id) do %>
+                  <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg",size: '40x40' %>
+                  <div class="card-title">
+                    <%= @user.name %>
+                  </div>
+                  <% end %>
+                </td>
                 <td><%= @books.title %></td>
                 <td><%= @books.body %></td>
                 <td>
@@ -27,7 +35,7 @@
                     <%= link_to "Edit", edit_book_path(@books.id) %>
                   </button>
                   <button type="button" class="btn btn-danger">
-                    <%= link_to "Destroy", book_path(@books), method: :delete %>
+                    <%= link_to "Destroy", book_path(@books.id), method: :delete, "data-confirm" => "本当に消しますか?" %>
                   </button>
                 <% end %>
                 </td>

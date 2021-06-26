@@ -20,6 +20,16 @@
             </ul>
           </div>
         <% end %>
+        <% if @book.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <%= @book.errors.count %>error found
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
         <%= form_with model:@book, local: true do |f| %>
           <p>Title</p>
           <%= f.text_field :title %>
