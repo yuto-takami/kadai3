@@ -1,9 +1,9 @@
 class BooksController < ApplicationController
   
    def index
-    @user = current_user
-    @book = Book.new
-    @books = Book.all
+     @user = current_user
+     @book = Book.new
+     @books = Book.all
    end
 
    def create
@@ -54,11 +54,11 @@ class BooksController < ApplicationController
 
 
    private
-   def book_params
+    def book_params
       params.require(:book).permit(:title, :body)
-   end
+    end
    
-   def user_params
+    def user_params
       params.require(:user).permit(:name, :profile_image, :introduction)
-   end
+    end
 end
