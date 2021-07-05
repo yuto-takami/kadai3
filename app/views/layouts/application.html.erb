@@ -22,7 +22,7 @@
           <div>
             <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-            
+
             <li class="nav-item">
               <%= link_to "Home", user_path(current_user.id), class: 'nav-link text-white fas fa-home' %>
             </li>
@@ -54,7 +54,6 @@
         </div>
       </nav>
     </header>
-
     <%= yield %>
     <footer class="bg-white text-dark">
       <p class="text-center">
