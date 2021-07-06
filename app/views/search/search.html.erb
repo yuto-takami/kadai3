@@ -1,2 +1,68 @@
-<h1>Search#search</h1>
-<p>Find me in app/views/search/search.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <bodt>
+    <div class="container">
+      <div class="col-md-12">
+        <% if @model == "user" %>
+        <h2>Users search for '<%= @value %>'</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td></td>
+              <td>Name</td>
+              <td>Introduction</td>
+            </tr>
+          </thead>
+          <% @datas.each do |user| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= attachment_image_tag user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40' %>
+              </td>
+              <td>
+                <%= link_to user_path(user.id) do %>
+                <%= user.name %>
+                <% end %>
+              </td>
+              <td>
+                <%= user.introduction %>
+              </td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+        <% elsif @model == "book" %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td></td>
+              <td>Title</td>
+              <td>Opinion</td>
+            </tr>
+          </thead>
+          <% @datas.each do |book| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size: '40x40' %>
+              </td>
+              <td>
+                <%= link_to book_path(book.id) do %>
+                <%= book.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+        <% end %>
+      </div>
+    </div>
+  </bodt>
+</html>
